@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     private final RoleDaoImpl roleDao;
@@ -36,6 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public boolean addRole(Role role) {
         Role userPrimary = roleDao.getByName(role.getRole());
         if(userPrimary != null) {return false;}
@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public boolean add(User user) {
         User userPrimary = userDao.getByName(user.getUsername());
         if(userPrimary != null) {return false;}
@@ -66,11 +67,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         userDao.delete(id);
     }
 
     @Override
+    @Transactional
     public void update(User user) {
         User userPrimary = getById(user.getId());
         System.out.println(userPrimary);

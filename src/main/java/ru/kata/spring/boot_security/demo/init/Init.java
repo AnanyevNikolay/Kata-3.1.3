@@ -13,8 +13,12 @@ import java.util.List;
 @Component
 public class Init {
 
-    @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    public Init(UserServiceImpl userService) {
+        this.userService = userService;
+    }
 
     @PostConstruct
     public void init() {
